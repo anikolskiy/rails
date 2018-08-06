@@ -119,7 +119,7 @@ class Numeric
   end
 
   [Float, Fixnum, Bignum, BigDecimal].each do |klass|
-    klass.send(:alias_method, :to_default_s, :to_s)
+    klass.send(:alias_method, :to_default_s, :to_s) unless klass.method_defined?(:to_default_s)
 
     klass.send(:define_method, :to_s) do |*args|
       if args[0].is_a?(Symbol)
